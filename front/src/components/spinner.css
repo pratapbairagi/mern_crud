@@ -1,0 +1,30 @@
+.container{
+    width: max-content;;
+    padding: 16px;position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner{
+    width: 64px;
+    height: 64px;
+    border-top: 2px solid red;
+    border-radius: 50%;
+    animation-name: rotate;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function:linear;
+}
+
+@keyframes rotate {
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
