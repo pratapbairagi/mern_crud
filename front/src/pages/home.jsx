@@ -6,6 +6,20 @@ import { Spinner } from "../components/spinner";
 
 
 export const List = () => {
+    const container = {
+        width: "max-content",
+        minWidth:"100%",
+        position:"relative",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "0",
+        padding: "48px 6px",
+        minHeight: "100vh",
+        background: "whitesmoke"
+    }
+
     const [users, setUsers] = useState([]);
 
     async function fetchData() {
@@ -45,7 +59,7 @@ export const List = () => {
     return (
         <>
         { users.length < 1 ? <Spinner/> :
-        <div className="container-fluid">
+        <div className="container-fluid" style={container}>
             <table>
                 <thead style={{background:"black"}}>
                     <tr style={{color:"white"}}>
@@ -71,7 +85,7 @@ export const List = () => {
                                 <td style={td}>{v.phone}</td>
                                 <td style={td}><img style={{width:"2rem", aspectRatio:"1/1"}} src={v.image} alt="" /></td>
                                 <td style={td}><button onClick={()=> del(v._id)} style={{cursor:"pointer", padding:"4px 12px", background:"red", color:"white", border:"none", fontWeight:"600", borderRadius:"3px"}}>Delete</button></td>
-                                <td style={td}><NavLink to={`/edit/${v._id}`}><button style={{cursor:"pointer",padding:"4px 12px", background:"gold", color:"white", border:"none", fontWeight:"600" , borderRadius:"3px"}}>EDIT</button></NavLink></td>
+                                <td style={td}><NavLink to={`/user/${v._id}`}><button style={{cursor:"pointer",padding:"4px 12px", background:"gold", color:"white", border:"none", fontWeight:"600" , borderRadius:"3px"}}>EDIT</button></NavLink></td>
                                 <td style={td}> <NavLink to="/add"><button style={{cursor:"pointer",padding:"4px 12px", background:"green", color:"white", border:"none", fontWeight:"600" , borderRadius:"3px"}}>ADD</button></NavLink></td>
                             </tr>)
                     })}

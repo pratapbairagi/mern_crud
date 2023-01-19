@@ -19,7 +19,7 @@ function App() {
         </ul>
         <Routes>
           <Route path='/' element={<List />} />
-          <Route path='/edit/:id' element={<Edit />} />
+          <Route path='/user/:id' element={<Edit />} />
           <Route path='/add' element={<Add />} />
 
 

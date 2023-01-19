@@ -25,7 +25,8 @@ const Edit = () => {
         maxWidth:"400px",
         border:"none",
         boxShadow:"0 0 1px grey",
-        padding:"6px"
+        padding:"6px",
+        gap:"8px"
 
     }
     const fieldset = {
@@ -54,6 +55,7 @@ const Edit = () => {
     }
 
     const {id} = useParams();
+    const [errorMssg, setErrorMssg] = useState("")
     const [user,setUser] = useState({
         name:"",
         email:"",
@@ -61,14 +63,20 @@ const Edit = () => {
         image:""
     })
     useEffect(()=>{
-     async  function fetchFunction (){
+     async function fetchFunction (){
         try {
            await axios.get(`https://mern-crud-server-back.vercel.app/user/${id}`).then(res=>{
             setUser(res.data)
           }).catch(err=>{
+            // console.log(err.response)
+            setErrorMssg(`${err.response.data.message} ! ${err.response.status}`)
+            setTimeout(()=>{
+                setErrorMssg("")
+            },3000)
 
           })
         } catch (error) {
+            console.log(error)
         }
         }
         fetchFunction()
@@ -111,8 +119,9 @@ const Edit = () => {
 
     }
     return(
-        <div className="container-fluid">
-            <form action="" style={{display:"flex", flexDirection:"column"}}>
+        <div className="container-fluid" style={container}>
+            <form action="" style={form}>
+            <span style={{ width: "100%", textAlign: "center", color: "black", padding: "2px", maxWidth: "400px" }}>Edit User</span>
                 <fieldset style={fieldset}>
                     <label style={label} htmlFor="name">Name</label>
                     <input defaultValue={user.name} onInput={inputValue} style={input} type="text" name="name" id="name" />
@@ -128,9 +137,11 @@ const Edit = () => {
                 <fieldset style={fieldset}>
                     <label style={label} htmlFor="image">Image</label>
                     <input defaultValue={user.image} onInput={inputValue} style={input} type="file" name="image" id="image" />
+                    <img src={user.image} style={{width:"1.5rem", aspectRatio:"1/1"}} alt="" />
                 </fieldset>
-                <button onClick={submit} style={{cursor:"pointer", width:"100%", textAlign:"center", background:"green", color:"white", padding:"2px", border:"none", padding:"4px"}} >Submit</button>
+                <button onClick={submit} style={{cursor:"pointer", width:"100%", textAlign:"center", background:"green", color:"white", padding:"2px", border:"none", padding:"4px", marginTop:"10px"}} >Submit</button>
             </form>
+            {errorMssg && <div style={{width:"100%", height:"max-content", textAlign:"center", padding:"8px 0", fontSize:"22px", fontWeight:"600", background:"red", color:"white", position:"fixed", bottom:"0", left:"0"}}>{errorMssg}</div>}
         </div>
     )
 }
