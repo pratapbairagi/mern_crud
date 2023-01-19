@@ -117,11 +117,9 @@ const Add = () => {
                     <label style={label} htmlFor="name">Image</label>
                     <input onInput={formValues} style={input} type="file" accept="*/image" name="image" id="name" />
                 </fieldset>
-                <button onClick={submit} style={{ width: "100%", textAlign: "center", background: "green", color: "white", padding: "2px", maxWidth: "400px", border: "none", padding: "4px" }} type="submit">Submit</button>
+                <button onClick={submit} style={{cursor:"pointer", width: "100%", textAlign: "center", background: "green", color: "white", padding: "2px", maxWidth: "400px", border: "none", padding: "4px" }} type="submit">Submit</button>
             </form>
-            {/* { image &&
-                <img style={{width:"100px"}} src={image} alt="" />
-            } */}
+            
         </div>
     )
 }

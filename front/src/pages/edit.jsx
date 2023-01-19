@@ -129,7 +129,7 @@ const Edit = () => {
                     <label style={label} htmlFor="image">Image</label>
                     <input defaultValue={user.image} onInput={inputValue} style={input} type="file" name="image" id="image" />
                 </fieldset>
-                <button onClick={submit} style={{width:"100%", textAlign:"center", background:"green", color:"white", padding:"2px", border:"none", padding:"4px"}} >Submit</button>
+                <button onClick={submit} style={{cursor:"pointer", width:"100%", textAlign:"center", background:"green", color:"white", padding:"2px", border:"none", padding:"4px"}} >Submit</button>
             </form>
         </div>
     )
