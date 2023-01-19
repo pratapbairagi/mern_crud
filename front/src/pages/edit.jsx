@@ -63,7 +63,7 @@ const Edit = () => {
     useEffect(()=>{
      async  function fetchFunction (){
         try {
-           await axios.get(`http://server-lime-ten.vercel.app/user/${id}`).then(res=>{
+           await axios.get(`https://mern-crud-server-back.vercel.app/user/${id}`).then(res=>{
             setUser(res.data)
           }).catch(err=>{
 

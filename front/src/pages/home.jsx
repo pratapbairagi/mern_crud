@@ -9,7 +9,9 @@ export const List = () => {
     const [users, setUsers] = useState([]);
 
     async function fetchData() {
+        // await axios.get("http://localhost:3546").then(res => {
         await axios.get("https://mern-crud-server-back.vercel.app").then(res => {
+
             setUsers(res.data)
         }).catch(err => {
             console.log(err)
@@ -67,7 +69,7 @@ export const List = () => {
                                 <td style={td}>{v._id}</td>
                                 <td style={td}>{v.email}</td>
                                 <td style={td}>{v.phone}</td>
-                                <td style={td}><img style={{width:"100%", height:"auto"}} src={v.image} alt="" /></td>
+                                <td style={td}><img style={{width:"2rem", aspectRatio:"1/1"}} src={v.image} alt="" /></td>
                                 <td style={td}><button onClick={()=> del(v._id)} style={{padding:"4px 12px", background:"red", color:"white", border:"none", fontWeight:"600", borderRadius:"3px"}}>Delete</button></td>
                                 <td style={td}><NavLink to={`/edit/${v._id}`}><button style={{padding:"4px 12px", background:"gold", color:"white", border:"none", fontWeight:"600" , borderRadius:"3px"}}>EDIT</button></NavLink></td>
                                 <td style={td}> <NavLink to="/add"><button style={{padding:"4px 12px", background:"green", color:"white", border:"none", fontWeight:"600" , borderRadius:"3px"}}>ADD</button></NavLink></td>
