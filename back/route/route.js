@@ -1,6 +1,8 @@
 
 import express from "express";
 import User from "../model/schema.js";
+import AppError  from "../utils/appError.js";
+
 
 export const router = express.Router();
 
@@ -15,7 +17,7 @@ router.get("/", async (req, res) => {
 })
 
 // delete
-router.delete("/user/:id", async (req, res) => {
+router.delete("/user/:id", async (req, res, next) => {
     const data = req.params.id;
     try {
         const user = await User.findById(req.params.id);
@@ -25,44 +27,55 @@ router.delete("/user/:id", async (req, res) => {
 
         }
         else {
-            res.status(200).json({ message: "User does not exist !" })
+            // res.status(200).json({ message: "User does not exist !" })
+            throw new AppError("User does not exist with this email", 404)
         }
     } catch (error) {
-
+        
     }
 })
 
 // add
-router.post("/add", async (req, res) => {
+router.post("/add", async (req, res, next) => {
     const data = req.body;
     try {
-        const userExist = await User.findOne({ email: data.email })
-        if (!userExist) {
-
-            const user = new User(data)
-            await user.save()
-            res.status(201).json({ ...user, message: "success" })
+        if(!data.name || !data.email || !data.phone ){
+            throw new AppError("All fields are required ", 400);
+        }
+        else{
+        const emailExist = await User.findOne({ email: data.email });
+        const phoneExist = await User.findOne({phone: data.phone});
+        if (emailExist) {
+            throw new AppError("User exist with this mail id", 400);
+        }
+        else if(phoneExist){
+            throw new AppError("User exist with this phone number", 400);
         }
         else {
-            res.status(202).json(data)
-
+            const user = new User(data);
+            
+            await user.save();
+           return res.status(201).json({ ...user, message: "success" });
         }
+    }
+   
     } catch (error) {
-        res.status(400).json({message:error})
+       return next(error)
     }
 })
 
 // get single
-router.get("/user/:id", async (req, res) => {
+router.get("/user/:id", async (req, res, next) => {
     try {
         const user = await User.findById(req.params.id);
         if (!user) {
+            throw new AppError("User not found", 404);
         }
         else {
-            res.status(200).json(user);
+           return res.status(200).json(user);
         }
     } catch (error) {
-
+        next(error);
     }
 })
 

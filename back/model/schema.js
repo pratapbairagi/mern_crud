@@ -4,16 +4,17 @@ import mongoose from "mongoose";
 const schema = mongoose.Schema({
     name:{
         type : String,
-        require : [true, "This field is reqired !"]
+        required : [true, "Name is required !"]
     },
     email:{
         type : String,
-        require : [true, "This field is reqired !"],
+        required : [true, "This field is reqired !"],
         unique:[true, " This email is already registered ! "]
     },
     phone:{
         type : Number,
-        require : [true, "This field is reqired !"]
+        required : [true, "Phone number is required !"],
+        unique : [true, "This Phone Number is already registered !"]
     },
     image:{
         type : String
