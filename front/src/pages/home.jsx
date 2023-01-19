@@ -9,7 +9,7 @@ export const List = () => {
     const [users, setUsers] = useState([]);
 
     async function fetchData() {
-        await axios.get("http://server-lime-ten.vercel.app").then(res => {
+        await axios.get("https://mern-crud-server-back.vercel.app").then(res => {
             setUsers(res.data)
         }).catch(err => {
             console.log(err)
@@ -23,7 +23,7 @@ export const List = () => {
     // del
     const del = async (id) =>{
         try {
-            await axios.delete(`http://server-lime-ten.vercel.app/user/${id}`).then(res=>{
+            await axios.delete(`https://mern-crud-server-back.vercel.app/user/${id}`).then(res=>{
                 res.status === 200 && fetchData()
             })
             .catch(err=>{

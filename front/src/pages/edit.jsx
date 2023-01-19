@@ -96,7 +96,7 @@ const Edit = () => {
         e.preventDefault();
 
         try {
-             await axios.post("http://server-lime-ten.vercel.app/user", user).then(res=>{
+             await axios.post("https://mern-crud-server-back.vercel.app/user", user).then(res=>{
                 console.log(res.status)
                 res.status === 200 && history("/")
              }).catch(err=>{

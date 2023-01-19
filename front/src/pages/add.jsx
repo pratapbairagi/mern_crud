@@ -87,7 +87,7 @@ const Add = () => {
         e.preventDefault();
         try {
             if (user) {
-                await axios.post("http://server-lime-ten.vercel.app/add", user).then((res) => {
+                await axios.post("https://mern-crud-server-back.vercel.app/add", user).then((res) => {
                     res.status === 201 && history("/")
                 })
             }
