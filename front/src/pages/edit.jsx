@@ -63,7 +63,7 @@ const Edit = () => {
     useEffect(()=>{
      async  function fetchFunction (){
         try {
-           await axios.get(`http://localhost:4000/user/${id}`).then(res=>{
+           await axios.get(`http://server-lime-ten.vercel.app/user/${id}`).then(res=>{
             setUser(res.data)
           }).catch(err=>{
 
@@ -96,7 +96,7 @@ const Edit = () => {
         e.preventDefault();
 
         try {
-             await axios.post("http://localhost:4000/user", user).then(res=>{
+             await axios.post("http://server-lime-ten.vercel.app/user", user).then(res=>{
                 console.log(res.status)
                 res.status === 200 && history("/")
              }).catch(err=>{

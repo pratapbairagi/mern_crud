@@ -87,7 +87,7 @@ const Add = () => {
         e.preventDefault();
         try {
             if (user) {
-                await axios.post("http://localhost:4000/add", user).then((res) => {
+                await axios.post("http://server-lime-ten.vercel.app/add", user).then((res) => {
                     res.status === 201 && history("/")
                 })
             }

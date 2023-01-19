@@ -14,7 +14,7 @@ app.use(bodyParser.json({extended:true}));
 app.use(bodyParser.urlencoded({extended:true}));
 connection();
 
-app.use("/",router);
+app.use("https://server-pratapbairagi.vercel.app/",router);
 
 app.listen(PORT, ()=>{
     console.log(`server connected at http://localhost:${PORT}`)
