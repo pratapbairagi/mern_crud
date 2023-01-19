@@ -1,7 +1,7 @@
 
 // const http = require("http");
 import http from "http";
-const PORT = 4000;
+const PORT = 3546;
 import express from "express";
 import cors from "cors";
 import {router} from "./route/route.js"; 
